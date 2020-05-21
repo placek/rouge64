@@ -1,0 +1,76 @@
+; Rouge-like game in 6502 assemply for a [JavaScript 6502 assembler and simulator](https://github.com/skilldrick/6502js).
+; (c) Paweł Placzyński
+
+  ; store address of the WALKER in memory at $0000 (litle endian)
+  LDX #$00
+  LDA #$0f
+  STA $00
+  LDA #$04
+  STA $01
+
+  ; plot at start point
+  LDA #$01
+  STA ($00,X)
+
+  ; move down and plot
+  JSR down
+  LDA #$02
+  STA ($00,X)
+
+  ; move right and plot
+  JSR right
+  LDA #$03
+  STA ($00,X)
+
+  ; move up and plot
+  JSR up
+  LDA #$04
+  STA ($00,X)
+
+  ; move left and plot
+  JSR left
+  LDA #$05
+  STA ($00,X)
+
+end:
+  BRK
+
+right:
+  LDA $00
+  CLC
+  ADC #$01
+  STA $00
+  LDA $01
+  ADC #$00
+  STA $01
+  RTS
+
+down:
+  LDA $00
+  CLC
+  ADC #$20
+  STA $00
+  LDA $01
+  ADC #$00
+  STA $01
+  RTS
+
+left:
+  LDA $00
+  SEC
+  SBC #$01
+  STA $00
+  LDA $01
+  SBC #$00
+  STA $01
+  RTS
+
+up:
+  LDA $00
+  SEC
+  SBC #$20
+  STA $00
+  LDA $01
+  SBC #$00
+  STA $01
+  RTS
