@@ -1,5 +1,5 @@
 ; Rouge-like game in 6502 assemply for a [JavaScript 6502 assembler and simulator](https://github.com/skilldrick/6502js).
-; (c) Paweł Placzyński
+; (c) Paweł Placzyński - https://github.com/placek
 
   ; store address of the WALKER in memory at $0000 (litle endian)
   LDX #$00
